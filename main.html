@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>UBUNTU — Leaders' Conclave</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #10100f;
+      --bg2: #171715;
+      --card: #1d1d1a;
+      --cream: #f3efe3;
+      --muted: #aaa89e;
+      --gold: #d7b46a;
+      --line: rgba(243,239,227,.13);
+      --white: #fffdf7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 90%);
+      margin: auto;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(18px);
+      background: rgba(16,16,15,.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 8px;
+    }
+
+    .logo small {
+      display: block;
+      font-family: "DM Sans", sans-serif;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-top: -5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+      font-size: 13px;
+      color: #d4d1c8;
+    }
+
+    .nav-links a {
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-button {
+      background: var(--cream);
+      color: #111;
+      padding: 11px 20px;
+      border-radius: 30px;
+      font-weight: 700;
+    }
+
+    .nav-button:hover {
+      background: var(--gold);
+      color: #111;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(215,180,106,.17),
+        transparent 68%
+      );
+      right: -180px;
+      top: 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(65px, 10vw, 135px);
+      line-height: .84;
+      letter-spacing: -5px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      max-width: 610px;
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .date {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      padding: 14px 23px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: var(--cream);
+      color: #111;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* decorative right side */
+
+    .hero-art {
+      height: 520px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .circle {
+      width: 390px;
+      height: 390px;
+      border: 1px solid rgba(215,180,106,.5);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .circle::before,
+    .circle::after {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      border: 1px solid rgba(215,180,106,.28);
+      border-radius: 50%;
+    }
+
+    .circle::after {
+      inset: 95px;
+    }
+
+    .circle-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      font-family: "Playfair Display", serif;
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .circle-text span {
+      color: var(--gold);
+    }
+
+    /* ================= STATS ================= */
+
+    .stats {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+
+    .stat {
+      padding: 30px 20px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 35px;
+      color: var(--gold);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ================= SECTIONS ================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 5vw, 67px);
+      line-height: 1;
+      margin-bottom: 45px;
+    }
+
+    /* ================= PRINCIPAL ================= */
+
+    .principal {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .portrait {
+      height: 440px;
+      background:
+        linear-gradient(145deg, #383831, #151513);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::after {
+      content: "PRINCIPAL";
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,.55);
+    }
+
+    .quote {
+      font-family: "Playfair Display", serif;
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 25px;
+    }
+
+    .quote-mark {
+      color: var(--gold);
+      font-size: 70px;
+      line-height: .4;
+      display: block;
+    }
+
+    .description {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    /* ================= EVENTS ================= */
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 18px;
+    }
+
+    .event {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 35px;
+      min-height: 320px;
+      position: relative;
+      transition: .3s;
+    }
+
+    .event:hover {
+      transform: translateY(-5px);
+      border-color: rgba(215,180,106,.5);
+    }
+
+    .event-number {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 55px;
+    }
+
+    .event h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 31px;
+      margin-bottom: 10px;
+    }
+
+    .event p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 500px;
+    }
+
+    .event-meta {
+      position: absolute;
+      bottom: 28px;
+      left: 35px;
+      right: 35px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .fee {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ================= MUN ================= */
+
+    .mun {
+      background: #151513;
+    }
+
+    .committee {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .committee-number {
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+    }
+
+    .committee h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .committee p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .committee-tag {
+      border: 1px solid var(--line);
+      padding: 7px 12px;
+      border-radius: 30px;
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    /* ================= SCHEDULE ================= */
+
+    .timeline {
+      border-left: 1px solid var(--gold);
+      margin-left: 20px;
+    }
+
+    .day {
+      padding: 0 0 65px 45px;
+      position: relative;
+    }
+
+    .day::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      left: -5px;
+      top: 5px;
+    }
+
+    .day-number {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .day h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+
+    .day p {
+      color: var(--muted);
+    }
+
+    /* ================= PERKS ================= */
+
+    .perks {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .perk {
+      background: var(--bg);
+      padding: 32px 25px;
+      min-height: 210px;
+    }
+
+    .perk-icon {
+      font-size: 26px;
+      margin-bottom: 35px;
+    }
+
+    .perk h3 {
+      margin-bottom: 9px;
+    }
+
+    .perk p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ================= FEES ================= */
+
+    .fees {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--gold);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    td {
+      font-size: 14px;
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
+      background: var(--gold);
+      color: #151513;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(45px, 7vw, 85px);
+      line-height: .95;
+      margin-bottom: 25px;
+    }
+
+    .cta p {
+      max-width: 550px;
+      margin: 0 auto 30px;
+      color: #4c402b;
+    }
+
+    .cta .btn {
+      background: #151513;
+      color: white;
+      border: none;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+    }
+
+    .contact-item {
+      border-bottom: 1px solid var(--line);
+      padding: 20px 0;
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .contact-item a {
+      color: var(--cream);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 45px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero-art {
+        height: 300px;
+      }
+
+      .circle {
+        width: 260px;
+        height: 260px;
+      }
+
+      .circle-text {
+        font-size: 28px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .principal {
+        grid-template-columns: 1fr;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .perks {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .committee {
+        grid-template-columns: 50px 1fr;
+      }
+
+      .committee-tag {
+        display: none;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media(max-width: 500px) {
+
+      section {
+        padding: 75px 0;
+      }
+
+      .hero h1 {
+        font-size: 65px;
+      }
+
+      .perks {
+        grid-template-columns: 1fr;
+      }
+
+      .event {
+        min-height: 350px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+  <div class="container nav-inner">
+
+    <a href="#" class="logo">
+      UBUNTU
+      <small>LEADERS' CONCLAVE</small>
+    </a>
+
+    <div class="nav-links">
+      <a href="#events">Events</a>
+      <a href="#mun">MUN</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#perks">Perks</a>
+      <a href="#fees">Fees</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-button" href="#register">Register</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <div class="eyebrow">
+        Inter-School Event · New Delhi
+      </div>
+
+      <h1>
+        UBUNTU
+        <span>2026</span>
+      </h1>
+
+      <p class="hero-sub">
+        Ramjas Leaders' Conclave — a celebration of
+        diplomacy, culture, innovation and leadership.
+      </p>
+
+      <div class="date">
+        27 — 29 JULY 2026
+      </div>
+
+      <div class="buttons">
+        <a href="#register" class="btn btn-primary">
+          Register Now →
+        </a>
+
+        <a href="#events" class="btn btn-secondary">
+          Explore Events
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-art">
+
+      <div class="circle">
+        <div class="circle-text">
+          I AM<br>
+          <span>BECAUSE</span><br>
+          WE ARE
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= STATS ================= -->
+
+<div class="stats">
+
+  <div class="container stats-grid">
+
+    <div class="stat">
+      <strong>03</strong>
+      <span>DAYS</span>
+    </div>
+
+    <div class="stat">
+      <strong>05</strong>
+      <span>EVENTS</span>
+    </div>
+
+    <div class="stat">
+      <strong>05</strong>
+      <span>MUN COMMITTEES</span>
+    </div>
+
+    <div class="stat">
+      <strong>III–XII</strong>
+      <span>CLASSES</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PRINCIPAL ================= -->
+
+<section>
+
+  <div class="container principal">
+
+    <div class="portrait"></div>
+
+    <div>
+
+      <div class="section-label">
+        From the Principal's Desk
+      </div>
+
+      <h2 class="section-title">
+        A platform built<br>
+        on togetherness.
+      </h2>
+
+      <div class="quote">
+        <span class="quote-mark">“</span>
+        If you want to go fast, go alone.
+        If you want to go far, go together.
+      </div>
+
+      <p class="description">
+        At the core of true education lies the understanding
+        that learning is not an individual journey, but a
+        shared experience enriched by collaboration,
+        empathy and mutual growth.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= EVENTS ================= -->
+
+<section id="events">
+
+  <div class="container">
+
+    <div class="section-label">
+      Competitions
+    </div>
+
+    <h2 class="section-title">
+      Events & Activities
+    </h2>
+
+    <div class="events-grid">
+
+      <article class="event">
+
+        <div class="event-number">01 · CULTURAL</div>
+
+        <h3>Ramcharitmanas<br>Antyakshari</h3>
+
+        <p>
+          An inter-school recitation competition
+          testing memory, melody and knowledge.
+        </p>
+
+        <div class="event-meta">
+          <span>Classes VI–XII</span>
+          <span class="fee">₹100 / participant</span>
+        </div>
+
+      </article>
+
+
+      <article class="event">
+
+        <div class="event-number">02 · CREATIVE</div>
+
+        <h3>NeoWorld —<br>Dress for the Future</h3>
+
+        <p>
+          Imagine tomorrow and transform into
+          a futuristic character.
+        </p>
+
+        <div class="event-meta">
+          <span>Classes III–V</span>
+          <span class="fee">₹300 / participant</span>
+        </div>
+
+      </article>
+
+
+      <article class="event">
+
+        <div class="event-number">03 · CASE STUDY</div>
+
+        <h3>Perspective<br>Forum</h3>
+
+        <p>
+          Analyse a real-world problem and present
+          a comprehensive solution.
+        </p>
+
+        <div class="event-meta">
+          <span>Classes VI–VIII</span>
+          <span class="fee">₹800 / participant</span>
+        </div>
+
+      </article>
+
+
+      <article class="event">
+
+        <div class="event-number">04 · ENTREPRENEURSHIP</div>
+
+        <h3>The Pitch<br>Battle</h3>
+
+        <p>
+          Present an original startup, product or
+          social solution before evaluators.
+        </p>
+
+        <div class="event-meta">
+          <span>Classes IX–XII</span>
+          <span class="fee">₹800 / participant</span>
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= MUN ================= -->
+
+<section class="mun" id="mun">
+
+  <div class="container">
+
+    <div class="section-label">
+      Model United Nations
+    </div>
+
+    <h2 class="section-title">
+      Committees & Agendas
+    </h2>
+
+
+    <div class="committee">
+
+      <div class="committee-number">01</div>
+
+      <div>
+        <h3>UNGA</h3>
+        <p>
+          United Nations General Assembly —
+          Regulation of Drone Usage in Modern Warfare
+        </p>
+      </div>
+
+      <span class="committee-tag">UN</span>
+
+    </div>
+
+
+    <div class="committee">
+
+      <div class="committee-number">02</div>
+
+      <div>
+        <h3>UNEP</h3>
+        <p>
+          United Nations Environment Programme —
+          Global Strategies to Combat Plastic Pollution
+        </p>
+      </div>
+
+      <span class="committee-tag">UN</span>
+
+    </div>
+
+
+    <div class="committee">
+
+      <div class="committee-number">03</div>
+
+      <div>
+        <h3>UNHRC</h3>
+        <p>
+          United Nations Human Rights Council —
+          State Responsibility and Human Rights
+        </p>
+      </div>
+
+      <span class="committee-tag">UN</span>
+
+    </div>
+
+
+    <div class="committee">
+
+      <div class="committee-number">04</div>
+
+      <div>
+        <h3>AIPPM</h3>
+        <p>
+          All India Political Parties Meet —
+          One Nation One Election
+        </p>
+      </div>
+
+      <span class="committee-tag">INDIA</span>
+
+    </div>
+
+
+    <div class="committee">
+
+      <div class="committee-number">05</div>
+
+      <div>
+        <h3>International Press</h3>
+        <p>
+          Journalist · Photographer · Caricaturist
+        </p>
+      </div>
+
+      <span class="committee-tag">PRESS</span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SCHEDULE ================= -->
+
+<section id="schedule">
+
+  <div class="container">
+
+    <div class="section-label">
+      Programme
+    </div>
+
+    <h2 class="section-title">
+      Three Days.<br>
+      One Experience.
+    </h2>
+
+
+    <div class="timeline">
+
+      <div class="day">
+
+        <div class="day-number">DAY ONE · 27 JULY</div>
+
+        <h3>Inauguration & Culture</h3>
+
+        <p>
+          Welcome address followed by the
+          Ramcharitmanas Antyakshari competition.
+        </p>
+
+      </div>
+
+
+      <div class="day">
+
+        <div class="day-number">DAY TWO · 28 JULY</div>
+
+        <h3>Creativity & Diplomacy</h3>
+
+        <p>
+          NeoWorld, Perspective Forum and
+          the opening sessions of all MUN committees.
+        </p>
+
+      </div>
+
+
+      <div class="day">
+
+        <div class="day-number">DAY THREE · 29 JULY</div>
+
+        <h3>Innovation & Awards</h3>
+
+        <p>
+          Pitch Battle, final MUN sessions,
+          valedictory ceremony and awards.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PERKS ================= -->
+
+<section id="perks">
+
+  <div class="container">
+
+    <div class="section-label">
+      Why Participate?
+    </div>
+
+    <h2 class="section-title">
+      More than<br>just a competition.
+    </h2>
+
+    <div class="perks">
+
+      <div class="perk">
+        <div class="perk-icon">✦</div>
+        <h3>Certificate</h3>
+        <p>
+          Every participant receives an official
+          certificate of participation.
+        </p>
+      </div>
+
+      <div class="perk">
+        <div class="perk-icon">♜</div>
+        <h3>Trophies & Medals</h3>
+        <p>
+          Winners and runners-up receive awards
+          during the grand ceremony.
+        </p>
+      </div>
+
+      <div class="perk">
+        <div class="perk-icon">★</div>
+        <h3>Special Honours</h3>
+        <p>
+          Outstanding delegates, best performers
+          and special commendations.
+        </p>
+      </div>
+
+      <div class="perk">
+        <div class="perk-icon">∞</div>
+        <h3>Inter-School Network</h3>
+        <p>
+          Meet students from schools across
+          New Delhi and beyond.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FEES ================= -->
+
+<section id="fees">
+
+  <div class="container">
+
+    <div class="section-label">
+      Registration
+    </div>
+
+    <h2 class="section-title">
+      Event Fees
+    </h2>
+
+    <div class="fees">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Eligibility</th>
+            <th>Fee</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Ramcharitmanas Antyakshari</td>
+            <td>VI–XII</td>
+            <td>₹100</td>
+          </tr>
+
+          <tr>
+            <td>NeoWorld</td>
+            <td>III–V</td>
+            <td>₹300</td>
+          </tr>
+
+          <tr>
+            <td>Perspective Forum</td>
+            <td>VI–VIII</td>
+            <td>₹800</td>
+          </tr>
+
+          <tr>
+            <td>The Pitch Battle</td>
+            <td>IX–XII</td>
+            <td>₹800</td>
+          </tr>
+
+          <tr>
+            <td>Ramjas MUN</td>
+            <td>VI–XII</td>
+            <td>₹1,750+</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta" id="register">
+
+  <h2>
+    I AM BECAUSE<br>
+    WE ARE.
+  </h2>
+
+  <p>
+    Bring your ideas. Find your voice.
+    Connect with the next generation of leaders.
+  </p>
+
+  <a href="#" class="btn">
+    Register Your School →
+  </a>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="section-label">
+      Get in Touch
+    </div>
+
+    <h2 class="section-title">
+      Contact &<br>Registration
+    </h2>
+
+    <div class="contact-grid">
+
+      <div>
+
+        <div class="contact-item">
+          <span>School</span>
+          Ramjas School, Anand Parvat, New Delhi
+        </div>
+
+        <div class="contact-item">
+          <span>Event</span>
+          Ubuntu — Ramjas Leaders' Conclave
+        </div>
+
+      </div>
+
+      <div>
+
+        <div class="contact-item">
+          <span>Registration</span>
+          <a href="mailto:hello@example.com">
+            hello@example.com
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span>Updates</span>
+          Follow Ubuntu for announcements and highlights.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div>
+      <strong>UBUNTU</strong>
+      — Leaders' Conclave
+    </div>
+
+    <div>
+      “I am because we are.”
+    </div>
+
+    <div>
+      © 2026 Ubuntu
+    </div>
+
+  </div>
+
+</footer>
+
+
+</body>
+</html>
